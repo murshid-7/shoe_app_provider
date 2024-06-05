@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +12,6 @@ class MyPieChart1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // getAllShoes();
-
     final productProvider =
         Provider.of<ProductProvider>(context, listen: false);
 
@@ -28,7 +28,7 @@ class MyPieChart1 extends StatelessWidget {
             IconButton(
                 onPressed: () {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => BottomNav()));
+                      MaterialPageRoute(builder: (context) => BottomScreen()));
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios,

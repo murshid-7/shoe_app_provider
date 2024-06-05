@@ -11,7 +11,6 @@ import 'package:shoezo3/view/details_screen.dart';
 import 'package:shoezo3/widgets/app_drawer.dart';
 import 'package:shoezo3/widgets/carousel_ads.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -20,29 +19,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // String searchPr = '';
-  // List<ShoeModel> searchList = [];
-  // searchfn() async {
-  //   final allProducts = await getAllShoes();
-  //   shoeListNotifier.value = allProducts;
-  // }
-
   @override
   void initState() {
     super.initState();
     Provider.of<ProductProvider>(context, listen: false).getAllProducts();
-
-    // searchfn();
   }
-
-  // searchResult() {
-  //   setState(() {
-  //     searchList = shoeListNotifier.value
-  //         .where((element) =>
-  //             element.name.toLowerCase().contains(searchPr.toLowerCase()))
-  //         .toList();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
           child: Column(
         children: [
-          SizedBox(
-            height: 50,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -147,7 +125,6 @@ Widget buildShoeList(List<ShoeModel> shoe) {
                       image: data.image,
                       category: data.catagory!,
                       id: index,
-                      
                     ),
                   ),
                 );

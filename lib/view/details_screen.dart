@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoezo3/controller/add_provider.dart';
 import 'package:shoezo3/controller/cart_provider.dart';
 import 'package:shoezo3/model/cart_model.dart';
+import 'package:shoezo3/view/cart_page.dart';
+import 'package:shoezo3/view/edit_product_page.dart';
 import 'package:shoezo3/widgets/designs.dart';
-
 
 // ignore: must_be_immutable
 class DetailScreen extends StatelessWidget {
@@ -38,14 +40,35 @@ class DetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.black,
-          centerTitle: true,
-          title: Row(children: [
-            IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back, color: Colors.white)),
-          ])),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: Row(children: [
+          IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back, color: Colors.white)),
+        ]),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.edit,
+              color: Colors.white,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => EditShoeScreen(
+                  name: name,
+                  price: price,
+                  index: id!,
+                  imagePath: image,
+                  category: category,
+                ),
+              ));
+            },
+          ),
+        ],
+      ),
       backgroundColor: const Color.fromARGB(248, 255, 255, 255),
       body: SingleChildScrollView(
         child: Column(
@@ -189,6 +212,10 @@ class DetailScreen extends StatelessWidget {
                       quantity: quantity,
                       category: category);
                   cartProvider.addToCart(cartitem);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CartPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
@@ -207,15 +234,17 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  Widget headerContainer({required image}) => Container(
-        height: 320,
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        child: Center(
-          child: SizedBox(
-            height: 200,
-            width: 300,
-            child: Image.file(File(image)),
+  Widget headerContainer({required image}) => Consumer<AddProvider>(
+        builder: (context, value, child) => Container(
+          height: 320,
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: SizedBox(
+              height: 200,
+              width: 300,
+              child: Image.file(File(image)),
+            ),
           ),
         ),
       );

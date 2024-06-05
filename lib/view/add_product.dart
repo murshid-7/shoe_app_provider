@@ -29,11 +29,11 @@ class AddProduct extends StatelessWidget {
             children: [
               Consumer<AddProvider>(
                 builder: (context, value, child) => Container(
-                  height: 100,
-                  width: 100,
+                  height: 150,
+                  width: 150,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Colors.black, width: 2),
+                    border: Border.all(color: Colors.black45, width: 1),
                     image: value.brand != null
                         ? DecorationImage(
                             image: FileImage(value.brand!),
@@ -47,7 +47,6 @@ class AddProduct extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20.0),
-
               GestureDetector(
                 onTap: () {
                   pickImage(context);
@@ -110,21 +109,6 @@ class AddProduct extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20.0),
-              // DropdownButton(
-              //     value: dropdown,
-              //     items: items.map((String items) {
-              //       return DropdownMenuItem(value: items, child: Text(items));
-              //     }).toList(),
-              //     onChanged: (value) {
-              //       addProvider.selectCategory = value.toString();
-              //     }
-              //     //  (String? newValue) {
-              //     //   setState(() {
-              //     //     dropdown = newValue!;
-              //     //   });
-              //     // }
-
-              //     ),
               DropdownButtonFormField<String>(
                 validator: (value) {
                   if (value == null) {
@@ -146,11 +130,11 @@ class AddProduct extends StatelessWidget {
                     borderSide: BorderSide.none,
                   ),
                   filled: true,
-                  fillColor: const Color.fromARGB(255, 225, 227, 234),
+                  fillColor: const Color.fromARGB(255, 178, 179, 181),
                   hintText: 'pick a brand',
                 ),
               ),
-
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   onAddShoe(context);

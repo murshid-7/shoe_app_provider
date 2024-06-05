@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shoezo3/controller/add_provider.dart';
+import 'package:shoezo3/controller/bottom_provider.dart';
 import 'package:shoezo3/controller/cart_provider.dart';
 import 'package:shoezo3/controller/product_provider.dart';
 import 'package:shoezo3/model/cart_model.dart';
 import 'package:shoezo3/model/shoe_model.dart';
 import 'package:shoezo3/view/splash_screen.dart';
 
-const save_key = 'userlogin';
+const saveKey = 'userlogin';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -32,8 +33,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AddProvider()),
         ChangeNotifierProvider(create: (context) => ProductProvider()),
         ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => BottomProvider()),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),
     );

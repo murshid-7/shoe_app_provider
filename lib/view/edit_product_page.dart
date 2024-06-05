@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shoezo3/controller/add_provider.dart';
+import 'package:shoezo3/controller/bottom_provider.dart';
 import 'package:shoezo3/controller/product_provider.dart';
 import 'package:shoezo3/model/shoe_model.dart';
-
 
 class EditShoeScreen extends StatefulWidget {
   String name;
@@ -112,6 +112,7 @@ class _EditStudentState extends State<EditShoeScreen> {
                 onPressed: () {
                   editAll();
 
+                  Navigator.pop(context);
                   Navigator.pop(context);
                 },
                 child: const Text(

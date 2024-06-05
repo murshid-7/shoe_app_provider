@@ -16,7 +16,7 @@ class Drawer1 extends StatelessWidget {
     Future<void> LogoutFuncion() async {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      sharedPreferences.setBool(save_key, false);
+      sharedPreferences.setBool(saveKey, false);
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => SplashScreen()));
     }

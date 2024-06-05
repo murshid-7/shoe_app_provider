@@ -12,7 +12,6 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -25,11 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> checkLogin() async {
     final sharedprefer = await SharedPreferences.getInstance();
-    final userLogin = sharedprefer.getBool(save_key);
+    final userLogin = sharedprefer.getBool(saveKey);
 
     if (userLogin == null || userLogin == false) {
       Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) =>  LoginScreen()));
+          MaterialPageRoute(builder: (context) => LoginScreen()));
     } else {
       checkloginFail();
     }
@@ -38,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> checkloginFail() async {
     await Future.delayed(const Duration(seconds: 3));
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-      return BottomNav();
+      return BottomScreen();
     }));
   }
 

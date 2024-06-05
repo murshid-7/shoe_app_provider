@@ -5,9 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoezo3/main.dart';
 import 'package:shoezo3/widgets/bottom_nav.dart';
 
-
 class LoginScreen extends StatelessWidget {
-   LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({super.key});
 
   final usernameController = TextEditingController();
 
@@ -21,10 +20,10 @@ class LoginScreen extends StatelessWidget {
 
     if (userName == 'hello' && passWord == '123') {
       final sharedpref = await SharedPreferences.getInstance();
-      await sharedpref.setBool(save_key, true);
+      await sharedpref.setBool(saveKey, true);
 
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => BottomNav()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => BottomScreen()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Incorrect username or password'),

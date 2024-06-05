@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoezo3/controller/cart_provider.dart';
-import 'package:shoezo3/view/edit_product_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -20,18 +19,26 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 223, 220, 217),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         backgroundColor: const Color.fromARGB(255, 223, 220, 217),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Consumer<CartProvider>(
               builder: (context, value, child) {
-                return Text(
-                  'Total : ${value.totalPrice}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    backgroundColor: Colors.black,
+                return Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20)),
+                  height: 40,
+                  width: 200,
+                  child: Center(
+                    child: Text(
+                      'Total : ${value.totalPrice}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 );
               },
@@ -46,7 +53,7 @@ class _CartPageState extends State<CartPage> {
             itemCount: value.cartList.length,
             itemBuilder: (context, index) {
               final data = value.cartList[index];
-              return ProductItem(
+              return productItem(
                 title: data.name,
                 subtitle: data.price,
                 category: data.category,
@@ -61,7 +68,7 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  Widget ProductItem({
+  Widget productItem({
     required BuildContext context,
     required int index,
     required String category,
@@ -113,10 +120,9 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    cartProvider.getAllCart();
+                                    // cartProvider.getAllCart();
                                     cartProvider.deleteFromCart(index);
                                     Navigator.of(context).pop();
-                                    setState(() {});
                                   },
                                   child: const Text(
                                     'Delete',
@@ -126,23 +132,6 @@ class _CartPageState extends State<CartPage> {
                               ],
                             );
                           });
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(),));
-                      // getAllShoesCart();
-                      // deleteShoesCart(index);
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.edit),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => EditShoeScreen(
-                          name: title,
-                          price: subtitle,
-                          index: index,
-                          imagePath: image,
-                          category: category,
-                        ),
-                      ));
                     },
                   ),
                 ],
